@@ -201,6 +201,14 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/cordova-plugin-fcm/www/FCMPlugin.js",
+        "id": "cordova-plugin-fcm.FCMPlugin",
+        "pluginId": "cordova-plugin-fcm",
+        "clobbers": [
+            "FCMPlugin"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-file/www/DirectoryEntry.js",
         "id": "cordova-plugin-file.DirectoryEntry",
         "pluginId": "cordova-plugin-file",
@@ -581,6 +589,7 @@ module.exports.metadata =
     "cordova-plugin-device-motion": "1.2.1",
     "cordova-plugin-device-orientation": "1.0.3",
     "cordova-plugin-dialogs": "1.2.1",
+    "cordova-plugin-fcm": "1.0.5",
     "cordova-plugin-file": "4.2.0",
     "cordova-plugin-file-transfer": "1.5.1",
     "cordova-plugin-geolocation": "2.1.0",

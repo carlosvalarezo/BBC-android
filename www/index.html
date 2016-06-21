@@ -12,14 +12,16 @@
     <title>BBC Sport - Demo two</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,900|Catamaran|Candal|Oswald' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/FCMPlugin.js"></script>
     <script type="text/javascript" src="js/SocialSharing.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
     <title>BBC Demo Two - Android</title>
 </head>
 
 <body>
 <script type="text/javascript">
     app.initialize();
+    FCMPlugin.subscribeToTopic('topicExample', successCallback, errorCallback);
 </script>
 
         <div class="logoContainer">
