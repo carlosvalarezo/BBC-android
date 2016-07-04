@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/myPhonegap.iml" filepath="$PROJECT_DIR$/.idea/myPhonegap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myPhonegap.iml" filepath="$PROJECT_DIR$/myPhonegap.iml" />
     </modules>
   </component>
 </project>

@@ -493,7 +493,9 @@ module.exports.metadata =
     "cordova-plugin-vibration": "2.1.1",
     "cordova-plugin-whitelist": "1.2.2",
     "cordova-plugin-x-socialsharing": "5.1.0",
-    "cordova-plugin-fcm": "1.0.5"
+    "cordova-plugin-fcm": "1.0.5",
+    "cordova-plugin-crosswalk-webview": "1.7.2",
+    "cordova-plugin-hybrid": "1.0.0"
 };
 // BOTTOM OF METADATA
 });

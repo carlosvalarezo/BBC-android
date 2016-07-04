@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		03877ED8EB6F48EAAA963667 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 08719631499241DD9D9E8B6B /* NSString+URLEncoding.m */; };
 		03FADD55072846B6A2E547FC /* CDVCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5B99AE4B2489FBC253C28 /* CDVCamera.m */; };
@@ -556,6 +555,11 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = TE2K4HU5LD;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

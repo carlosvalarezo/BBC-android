@@ -91,6 +91,30 @@
                         {
                             "xml": "<feature name=\"FCMPlugin\"><param name=\"android-package\" value=\"com.gae.scaffolder.plugin.FCMPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"webView\" value=\"org.crosswalk.engine.XWalkWebViewEngine\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference default=\"18+\" name=\"xwalkVersion\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference default=\"xwalk_core_library_canary:17+\" name=\"xwalkLiteVersion\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference default=\"--disable-pull-to-refresh-effect\" name=\"xwalkCommandLine\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference default=\"embedded\" name=\"xwalkMode\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference default=\"true\" name=\"xwalkMultipleApk\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -140,6 +164,10 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 2
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
                             "count": 1
                         }
                     ],
@@ -235,6 +263,12 @@
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
         "cordova-plugin-fcm": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
+        },
+        "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
+        },
+        "cordova-plugin-hybrid": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         }
     },
@@ -706,6 +740,13 @@
             "clobbers": [
                 "FCMPlugin"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-hybrid/www/HybridBridge.js",
+            "id": "cordova-plugin-hybrid.HybridBridge",
+            "clobbers": [
+                "HybridBridge"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -731,6 +772,8 @@
         "cordova-plugin-vibration": "2.1.1",
         "cordova-plugin-whitelist": "1.2.2",
         "cordova-plugin-x-socialsharing": "5.1.0",
-        "cordova-plugin-fcm": "1.0.5"
+        "cordova-plugin-fcm": "1.0.5",
+        "cordova-plugin-crosswalk-webview": "1.7.2",
+        "cordova-plugin-hybrid": "1.0.0"
     }
 }

@@ -1,6 +1,6 @@
 body
 {
-    background: url("img/background-top.gif") repeat-x;
+    /*background: url("img/background-top.gif") repeat-x;*/
 }
 
 .logoContainer
@@ -11,12 +11,12 @@ body
 }
 .logo
 {
-    position:absolute;
+    /*position:absolute;*/
     top:50%;
     left:50%;
-    transform:translate(-50%, -50%);
-    width: 125px;
-    height:17px;
+    /*transform:translate(-50%, -50%);*/
+    width: 272px;
+    height:40px;
 }
 
 .type-a-top-story-1-container

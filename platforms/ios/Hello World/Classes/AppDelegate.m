@@ -57,6 +57,8 @@
     [NSURLCache setSharedURLCache:sharedCache];
 
     self = [super init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
+                                                 name:kFIRInstanceIDTokenRefreshNotification object:nil];
     return self;
 }
 
@@ -93,6 +95,21 @@
     [self.window makeKeyAndVisible];
     //[FIRApp configure];
     // [END configure_firebase]
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
+        // iOS 7.1 or earlier
+        UIRemoteNotificationType allNotificationTypes =
+        (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge);
+        [application registerForRemoteNotificationTypes:allNotificationTypes];
+    } else {
+        // iOS 8 or later
+        // [END_EXCLUDE]
+        UIUserNotificationType allNotificationTypes =
+        (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings =
+        [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
     
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
@@ -124,28 +141,18 @@
 {
     // re-post ( broadcast )
     [[NSNotificationCenter defaultCenter] postNotificationName:CDVLocalNotification object:notification];
+    NSLog(@"Hola llamda..!!!");
 }
 
 #ifndef DISABLE_PUSH_NOTIFICATIONS
 
-    - (void)                                 application:(UIApplication*)application
-        didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
-    {
-        // re-post ( broadcast )
-        NSString* token = [[[[deviceToken description]
-            stringByReplacingOccurrencesOfString:@"<" withString:@""]
-            stringByReplacingOccurrencesOfString:@">" withString:@""]
-            stringByReplacingOccurrencesOfString:@" " withString:@""];
-
-        [[NSNotificationCenter defaultCenter] postNotificationName:CDVRemoteNotification object:token];
-    }
-
-    - (void)                                 application:(UIApplication*)application
-        didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
-    {
-        // re-post ( broadcast )
-        [[NSNotificationCenter defaultCenter] postNotificationName:CDVRemoteNotificationError object:error];
-    }
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"HERE content---%@", token);
+    NSLog(@"Hola llamada22222..!!!");
+}
 #endif
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000
@@ -158,6 +165,15 @@
     NSUInteger supportedInterfaceOrientations = (1 << UIInterfaceOrientationPortrait) | (1 << UIInterfaceOrientationLandscapeLeft) | (1 << UIInterfaceOrientationLandscapeRight) | (1 << UIInterfaceOrientationPortraitUpsideDown);
 
     return supportedInterfaceOrientations;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [self connectToFcm];
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    [[FIRMessaging messaging] disconnect];
+    NSLog(@"Disconnected from FCM");
 }
 
 - (void)tokenRefreshNotification:(NSNotification *)notification {
@@ -183,6 +199,21 @@
         }
     }];
 }
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    // If you are receiving a notification message while your app is in the background,
+    // this callback will not be fired till the user taps on the notification launching the application.
+    // TODO: Handle data of notification
+    
+    // Print message ID.
+    NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+    
+    // Pring full message.
+    NSLog(@"%@", userInfo);
+    NSLog(@"Hola ha llegado una notificacion");
+}
+
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication*)application
 {
