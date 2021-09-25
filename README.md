@@ -1,8 +1,8 @@
-# Hello World PhoneGap Template [![bitHound Score][bithound-img]][bithound-url]
+# BBC Android features
 
-A PhoneGap Hello World template
+This repo contains features to be implemented in the UI for the Android App of BBC Sports
 
-## Usage
+## Tools
 
 #### PhoneGap CLI
 
